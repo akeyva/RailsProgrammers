@@ -1,0 +1,99 @@
+<script src="/path/to/jquery.masonry.min.js"></script>
+
+<!-- <h1>Flatiron School Presents <br> <br>
+Programmers to know<br> <br>
+True bosses in the game </h1> -->
+
+
+<body class="homepage ">
+  
+<div id="loading-image">
+  <p align="center"><img src="assets/loading.jpg" alt="Loading..." height="169px" width="460px" align="center"/></p>
+</div>
+
+<section id="content">
+    
+    <div id="container" class="transitions-enabled clearfix">
+  
+    <div class="item big-text col2">
+      <br/>
+      <img src="assets/flatiron.png" align="left">Flatiron School Presents<br />
+      Programmers to know<br />
+      True bosses in the game
+      <br/>
+    </div>
+
+  <% @programmers.each do |programmer| %>
+    <div class="item">
+              <a href="<%= programmer.wiki_url %>">
+                <% if !programmer.image_url.nil? %>
+                <img width="200px;" src="<%= programmer.image_url %>">
+                <% end %>
+              <h2><%= programmer.name %></h2></a>
+              <p><%= programmer.tag_line %></p>
+    <div class="clear"></div>
+    </div>
+  <% end %>
+
+</div> <!-- #container -->
+
+<script src="js/jquery-1.7.1.min.js"></script>
+<script src="jquery.masonry.min.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/flip-card.js"></script>
+<script type="text/javascript">
+
+var $container = $('#container');
+$container.imagesLoaded(function(){
+  $container.masonry({
+    itemSelector : '.item',
+    columnWidth : 240,
+    isAnimated: true,
+    animationOptions: {
+    duration: 150,
+    easing: 'linear',
+    queue: true
+    }  
+  });
+});
+
+
+$(window).load(function(){
+  $('#loading-image').slideUp('slow');
+  $('#container').masonry({
+  });
+});
+</script>
+
+    <footer id="site-footer">
+      By <a href="http://students.flatironschool.com/davidbaker.html">David Baker</a> &amp; <a href="http://students.flatironschool.com/akivaleeder.html">Akiva Leeder</a> at <a href="http://flatironschool.com">The Flatiron School</a>
+    </footer>
+    
+  </section> <!-- #content -->
+
+</body>
+
+<!-- 
+
+
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @programmers.each do |programmer| %>
+  <tr>
+    <td><%= programmer.name %></td>
+    <td><%= link_to 'Show', programmer %></td>
+    <td><%= link_to 'Edit', edit_programmer_path(programmer) %></td>
+    <td><%= link_to 'Destroy', programmer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Programmer', new_programmer_path %> -->
